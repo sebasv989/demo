@@ -1,6 +1,6 @@
 package com.example.demo.customer;
 
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -10,14 +10,14 @@ import java.util.List;
 @Service
 public class CustomerService {
 
+    private final CustomerRepository customerRepository;
+
+    @Autowired
+    public CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
+
     public List<Customer> getCustomers(){
-        return List.of(
-                new Customer(
-                        1L,
-                        "Sebastian",
-                        LocalDate.of(2022, Month.MAY,6),
-                        "sebastianvillada989@gmail.com"
-                )
-        );
+        return customerRepository.findAll();
     }
 }
