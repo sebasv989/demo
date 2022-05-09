@@ -11,6 +11,7 @@ import java.time.Month;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CustomerService {
@@ -48,4 +49,7 @@ public class CustomerService {
     }
 
 
+    public void updateCustomer(UUID customerId, Customer customer) {
+        customerRepository.updateCustomer(customerId, customer);
+    }
 }
