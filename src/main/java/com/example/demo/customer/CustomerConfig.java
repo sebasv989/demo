@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.List;
 
 @Configuration
 public class CustomerConfig {
@@ -14,12 +15,21 @@ public class CustomerConfig {
     CommandLineRunner commandLineRunner(CustomerRepository repository){
 
         return args -> {
-            new Customer(
-                    1L,
+            Customer sebastian = new Customer(
                     "Sebastian",
                     LocalDate.of(2022, Month.MAY,6),
                     "sebastianvillada989@gmail.com"
             );
+            Customer joe = new Customer(
+                    "Joe",
+                    LocalDate.of(2022, Month.MAY,6),
+                    "Joe@gmail.com"
+            );
+
+            repository.saveAll(
+                    List.of(sebastian, joe)
+            );
+
         };
     }
 }
